@@ -4,17 +4,22 @@ using System.Collections.Generic;
 namespace Prototyp
 {
 
-    public abstract class ProductPrototype //...
+    public abstract class ProductPrototype : Supermarket//...
     {
 
         //...
-        int price=0;
+        public string Name;
+        
+        public decimal Price { get; set; }
 
         public ProductPrototype(decimal price)
         {
-            
             //...
+            
+            
         }
+
+        
 
         public ProductPrototype Clone()
         {
