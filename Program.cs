@@ -4,22 +4,22 @@ using System.Collections.Generic;
 namespace Prototyp
 {
 
-    public abstract class ProductPrototype : Supermarket//...
+    public abstract class ProductPrototype//...
     {
 
         //...
-        public string Name;
+        
         
         public decimal Price { get; set; }
 
         public ProductPrototype(decimal price)
         {
             //...
-            
+            Price=price;
             
         }
 
-        
+
 
         public ProductPrototype Clone()
         {
@@ -58,7 +58,8 @@ namespace Prototyp
         public ProductPrototype GetClonedProduct(string key)
         {
             //... zwraca klon
-            return _productList[key];
+
+            return _productList[key].Clone();
         }
 
     }
@@ -72,20 +73,33 @@ namespace Prototyp
             //... supermarket
             Supermarket supermarket= new Supermarket();
             //... product; 
-            ProductPrototype product;
+
 
             //...
-            supermarket.AddProduct("Bread", new Bread(9.30m));
+
+
+
+            //...
             supermarket.AddProduct("Butter", new Butter(5.30m));
+            supermarket.AddProduct("Bread", new Bread(9.50m));
 
 
-            
-            //...
-            product = supermarket.GetClonedProduct("Butter");
-            product = supermarket.GetClonedProduct("Bread");
+
+            ProductPrototype product = supermarket.GetClonedProduct("Butter");
             Console.WriteLine(String.Format("Butter - {0} zł", product.Price));
-            Console.WriteLine(String.Format("Bread - {0} zł", product.Price));
+            
+
+
+            ProductPrototype product2 = supermarket.GetClonedProduct("Bread");
+            Console.WriteLine(String.Format("Bread - {0} zł", product2.Price));
+            product2.Price = 2m;
+            Console.WriteLine(String.Format("Bread - {0} zł", product2.Price));
+
+
+            ProductPrototype product3 = supermarket.GetClonedProduct("Bread");
+            Console.WriteLine(String.Format("Bread - {0} zł", product3.Price));
             //...
+            
 
         }
     }
